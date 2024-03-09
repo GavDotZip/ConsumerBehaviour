@@ -18,7 +18,7 @@ plt.title('Count of Each Gender')
 plt.grid(axis='y')
 plt.show()
 
-# Plotthe line chart for Age, Annual Income and Spending Score
+# Plot the line chart for Age, Annual Income and Spending Score
 plt.figure(figsize=(11, 8))
 sns.lineplot(data=df[['Age', 'Annual Income (k$)', 'Spending Score (1-100)']], palette='magma')
 plt.title('Line Plot of Age, Annual Income, and Spending Score')
