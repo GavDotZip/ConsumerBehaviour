@@ -7,7 +7,6 @@ from sklearn.metrics import accuracy_score
 
 df = pd.read_csv('C:/Users/gavin/PycharmProjects/ConsumerBehaviour/src/data/Mall_Customers.csv')
 
-
 # Count the occurrences of each gender
 gender_counts = df['Gender'].value_counts()
 
