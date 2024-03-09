@@ -26,3 +26,16 @@ plt.title('Line Plot of Age, Annual Income, and Spending Score')
 plt.xlabel('Data Points')
 plt.ylabel('Values')
 plt.show()
+
+# Prepare features and target variable
+X = df[['Age', 'Annual Income (k$)', 'Spending Score (1-100)']]
+y = df['Gender']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+clf = DecisionTreeClassifier()
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+
+# Evaluate the accuracy of the classifier
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
