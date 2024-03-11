@@ -54,11 +54,12 @@ def perform_clustering(data):
     # Plot the clusters
     plt.figure(figsize=(10, 6))
     plt.scatter(df[df['Cluster'] == 0]['Age'], df[df['Cluster'] == 0]['Spending Score (1-100)'], s=50, c='red',
-                label='Cluster 1')
+                label='Cluster 1')  # Likely younger individuals with higher spending scores
     plt.scatter(df[df['Cluster'] == 1]['Age'], df[df['Cluster'] == 1]['Spending Score (1-100)'], s=50, c='blue',
-                label='Cluster 2')
+                label='Cluster 2')  # Wide age range with a lower spending score
     plt.scatter(df[df['Cluster'] == 2]['Age'], df[df['Cluster'] == 2]['Spending Score (1-100)'], s=50, c='green',
-                label='Cluster 3')
+                label='Cluster 3')  # Older consumers with a mid-high spending score
+    # Average position for each cluster
     plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s=100, c='yellow', label='Centroids')
     plt.title('Clustering of Customers based on Age and Spending Score')
     plt.xlabel('Age')
