@@ -112,10 +112,10 @@ def customer_regression(data):
 # Load the data
 df = pd.read_csv('C:/Users/gavin/PycharmProjects/ConsumerBehaviour/src/data/shopping_behavior_updated.csv')
 
-# # Plot the Bar Chart for Top 5 Customers
-# top_spenders(df)
-#
-# # Perform K-Means Clustering on Age and Previous Purchases
-# cluster_by_frequency(df)
+# Plot the Bar Chart for Top 5 Customers
+top_spenders(df)
+
+# Perform K-Means Clustering on Age and Previous Purchases
+cluster_by_frequency(df)
 
 customer_regression(df)
