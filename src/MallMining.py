@@ -5,6 +5,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.cluster import KMeans
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
 
 
 def plot_gender_count(data):
@@ -69,6 +72,37 @@ def perform_clustering(data):
     plt.show()
 
 
+def perform_regression(data):
+    X = df[['Age']]
+    Y = df['Spending Score (1-100)']
+
+    # Splitting the data into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
+
+    # Initialize and train the linear regression model
+    regression_model = LinearRegression()
+    regression_model.fit(X_train, y_train)
+
+    # Making predictions on the testing set
+    y_pred = regression_model.predict(X_test)
+
+    # Evaluate the performance of the model
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    print("Mean Squared Error:", mse)
+    print("R-squared Score:", r2)
+
+    # Plotting the regression line
+    plt.scatter(X_test, y_test, color='blue', label='Actual')
+    plt.plot(X_test, y_pred, color='red', linewidth=2, label='Predicted')
+    plt.xlabel('Age')
+    plt.ylabel('Spending Score (1-100)')
+    plt.title('Linear Regression: Age vs Spending Score')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+
 # Load the data
 df = pd.read_csv('C:/Users/gavin/PycharmProjects/ConsumerBehaviour/src/data/Mall_Customers.csv')
 
@@ -83,3 +117,6 @@ perform_classification(df)
 
 # Perform K-Means Clustering for Age and Spending Score
 perform_clustering(df)
+
+# Perform Linear Regression for Age and Spending Score
+perform_regression(df)
