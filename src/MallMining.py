@@ -7,7 +7,6 @@ from sklearn.metrics import accuracy_score
 from sklearn.cluster import KMeans
 
 
-
 def plot_gender_count(data):
     # Count the occurrences of each gender
     gender_counts = data['Gender'].value_counts()
@@ -45,10 +44,29 @@ def perform_classification(data):
     accuracy = accuracy_score(y_test, y_pred)
     print("Accuracy:", accuracy)
 
+
 def perform_clustering(data):
     X = df[['Age', 'Spending Score (1-100)']]
     kmeans = KMeans(n_clusters=3, random_state=42)
     kmeans.fit(X)
+    df['Cluster'] = kmeans.labels_
+
+    # Plot the clusters
+    plt.figure(figsize=(10, 6))
+    plt.scatter(df[df['Cluster'] == 0]['Age'], df[df['Cluster'] == 0]['Spending Score (1-100)'], s=50, c='red',
+                label='Cluster 1')
+    plt.scatter(df[df['Cluster'] == 1]['Age'], df[df['Cluster'] == 1]['Spending Score (1-100)'], s=50, c='blue',
+                label='Cluster 2')
+    plt.scatter(df[df['Cluster'] == 2]['Age'], df[df['Cluster'] == 2]['Spending Score (1-100)'], s=50, c='green',
+                label='Cluster 3')
+    plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s=100, c='yellow', label='Centroids')
+    plt.title('Clustering of Customers based on Age and Spending Score')
+    plt.xlabel('Age')
+    plt.ylabel('Spending Score (1-100)')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
 
 # Load the data
 df = pd.read_csv('C:/Users/gavin/PycharmProjects/ConsumerBehaviour/src/data/Mall_Customers.csv')
@@ -61,3 +79,6 @@ plot_line_chart(df)
 
 # Perform classification and evaluate accuracy
 perform_classification(df)
+
+# Perform K-Means Clustering for Age and Spending Score
+perform_clustering((df))
