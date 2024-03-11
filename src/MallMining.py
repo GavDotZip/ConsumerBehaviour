@@ -4,6 +4,8 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.cluster import KMeans
+
 
 
 def plot_gender_count(data):
@@ -43,6 +45,10 @@ def perform_classification(data):
     accuracy = accuracy_score(y_test, y_pred)
     print("Accuracy:", accuracy)
 
+def perform_clustering(data):
+    X = df[['Age', 'Spending Score (1-100)']]
+    kmeans = KMeans(n_clusters=3, random_state=42)
+    kmeans.fit(X)
 
 # Load the data
 df = pd.read_csv('C:/Users/gavin/PycharmProjects/ConsumerBehaviour/src/data/Mall_Customers.csv')
