@@ -81,4 +81,4 @@ plot_line_chart(df)
 perform_classification(df)
 
 # Perform K-Means Clustering for Age and Spending Score
-perform_clustering((df))
+perform_clustering(df)
