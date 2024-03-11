@@ -64,6 +64,9 @@ def cluster_by_frequency(data):
     plt.show()
 
 
+def customer_segmentation(data):
+
+
 # Load the data
 df = pd.read_csv('C:/Users/gavin/PycharmProjects/ConsumerBehaviour/src/data/shopping_behavior_updated.csv')
 
@@ -72,3 +75,5 @@ top_spenders(df)
 
 # Perform K-Means Clustering on Age and Previous Purchases
 cluster_by_frequency(df)
+
+customer_segmentation(df)
