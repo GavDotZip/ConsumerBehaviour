@@ -2,6 +2,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.cluster import KMeans
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 
@@ -64,7 +67,28 @@ def cluster_by_frequency(data):
     plt.show()
 
 
-def customer_segmentation(data):
+def customer_regression(data):
+    # Selecting features and target variable
+    X = data[['Age', 'Purchase Amount (USD)', 'Review Rating']]
+    y = data['Subscription Status']
+
+    # Splitting the dataset into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Initializing and training the logistic regression model
+    model = LogisticRegression()
+    model.fit(X_train, y_train)
+
+    # Predicting on the test set
+    y_pred = model.predict(X_test)
+
+    # Evaluating the model
+    accuracy = accuracy_score(y_test, y_pred)
+    print("Accuracy:", accuracy)
+
+    # Generating a classification report
+    print("\nClassification Report:")
+    print(classification_report(y_test, y_pred))
 
 
 # Load the data
@@ -76,4 +100,4 @@ top_spenders(df)
 # Perform K-Means Clustering on Age and Previous Purchases
 cluster_by_frequency(df)
 
-customer_segmentation(df)
+customer_regression(df)
