@@ -129,6 +129,7 @@ def deeper_customer_bar_chart(data):
     plt.tight_layout()
     plt.show()
 
+
 def violin_frequency_by_age(data):
     # Filter out rows with NaN values in 'Age' and 'Frequency of Purchases'
     data.dropna(subset=['Age', 'Frequency of Purchases'], inplace=True)
