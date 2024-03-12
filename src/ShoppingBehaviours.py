@@ -68,44 +68,21 @@ def cluster_by_frequency(data):
     plt.show()
 
 
-def customer_regression(data):
-    # Handling missing values
-    data.dropna(inplace=True)
+def customer_stacked_bar_chart(data):
+    # Grouping the data by age and gender and counting occurrences
+    age_gender_counts = data.groupby(['Age', 'Gender']).size().unstack(fill_value=0)
 
-    # Selecting features and target variable
-    X = data[['Age', 'Purchase Amount (USD)']].copy()
-    y = data['Subscription Status']
+    # Plotting the stacked bar chart
+    age_gender_counts.plot(kind='bar', stacked=True, figsize=(10, 6))
 
-    # Ensure there are no NaN or infinite values in the data
-    X.replace([np.inf, -np.inf], np.nan, inplace=True)
-    X.dropna(inplace=True)
-    y = y[X.index]  # Aligning target variable with the cleaned data
-
-    # Splitting the dataset into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-    # Initializing and training the logistic regression model
-    model = LogisticRegression()
-    model.fit(X_train, y_train)
-
-    # Plotting decision boundary
-    x_min, x_max = X.iloc[:, 0].min() - 1, X.iloc[:, 0].max() + 1
-    y_min, y_max = X.iloc[:, 1].min() - 1, X.iloc[:, 1].max() + 1
-    xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.01),
-                         np.arange(y_min, y_max, 0.01))
-
-    Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
-    Z = Z.reshape(xx.shape)
-
-    plt.figure()
-    plt.contourf(xx, yy, Z, alpha=0.8)
-
-    # Plotting training points
-    plt.scatter(X_train.iloc[:, 0], X_train.iloc[:, 1], c=y_train, edgecolors='k', cmap=plt.cm.Paired)
+    # Adding labels and title
     plt.xlabel('Age')
-    plt.ylabel('Purchase Amount (USD)')
-    plt.title('Logistic Regression Decision Boundary')
+    plt.ylabel('Count')
+    plt.title('Stacked Bar Chart of Age and Gender')
 
+    # Show plot
+    plt.legend(title='Gender')
+    plt.tight_layout()
     plt.show()
 
 
@@ -113,9 +90,9 @@ def customer_regression(data):
 df = pd.read_csv('C:/Users/gavin/PycharmProjects/ConsumerBehaviour/src/data/shopping_behavior_updated.csv')
 
 # Plot the Bar Chart for Top 5 Customers
-top_spenders(df)
+# top_spenders(df)
 
 # Perform K-Means Clustering on Age and Previous Purchases
-cluster_by_frequency(df)
+# cluster_by_frequency(df)
 
-customer_regression(df)
+customer_stacked_bar_chart(df)
