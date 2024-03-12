@@ -163,4 +163,5 @@ customer_stacked_bar_chart(df)
 # Include Average Purchase Amount (USD) and Average Review Rating
 deeper_customer_bar_chart(df)
 
+# Plot a Violin Chart by Age and Frequency of Purchases
 violin_frequency_by_age(df)
