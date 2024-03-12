@@ -151,7 +151,7 @@ def violin_frequency_by_age(data):
 df = pd.read_csv('C:/Users/gavin/PycharmProjects/ConsumerBehaviour/src/data/shopping_behavior_updated.csv')
 
 # Plot the Bar Chart for Top 5 Customers
-# top_spenders(df)
+top_spenders(df)
 
 # Perform K-Means Clustering on Age and Previous Purchases
 cluster_by_frequency(df)
