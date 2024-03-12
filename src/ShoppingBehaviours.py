@@ -142,5 +142,6 @@ df = pd.read_csv('C:/Users/gavin/PycharmProjects/ConsumerBehaviour/src/data/shop
 # Plot a Stacked Customer Bar Chart by Age and Gender
 # customer_stacked_bar_chart(df)
 
-
+# Plot a Stacked Bar Customer Bar Chart by Age and Gender
+# Include Average Purchase Amount (USD) and Average Review Rating
 deeper_customer_bar_chart(df)
