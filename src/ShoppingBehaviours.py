@@ -154,7 +154,7 @@ df = pd.read_csv('C:/Users/gavin/PycharmProjects/ConsumerBehaviour/src/data/shop
 # top_spenders(df)
 
 # Perform K-Means Clustering on Age and Previous Purchases
-# cluster_by_frequency(df)
+cluster_by_frequency(df)
 
 # Plot a Stacked Customer Bar Chart by Age and Gender
 customer_stacked_bar_chart(df)
