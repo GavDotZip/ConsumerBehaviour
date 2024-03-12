@@ -129,6 +129,22 @@ def deeper_customer_bar_chart(data):
     plt.tight_layout()
     plt.show()
 
+def violin_frequency_by_age(data):
+    # Filter out rows with NaN values in 'Age' and 'Frequency of Purchases'
+    data.dropna(subset=['Age', 'Frequency of Purchases'], inplace=True)
+
+    # Create the violin plot
+    plt.figure(figsize=(10, 6))
+    sns.violinplot(x='Frequency of Purchases', y='Age', data=data, inner='quartile')
+
+    # Adding labels and title
+    plt.xlabel('Frequency of Purchases')
+    plt.ylabel('Age')
+    plt.title('Violin Plot of Age and Frequency of Purchases')
+
+    # Show plot
+    plt.show()
+
 
 # Load the data
 df = pd.read_csv('C:/Users/gavin/PycharmProjects/ConsumerBehaviour/src/data/shopping_behavior_updated.csv')
@@ -144,4 +160,6 @@ df = pd.read_csv('C:/Users/gavin/PycharmProjects/ConsumerBehaviour/src/data/shop
 
 # Plot a Stacked Bar Customer Bar Chart by Age and Gender
 # Include Average Purchase Amount (USD) and Average Review Rating
-deeper_customer_bar_chart(df)
+# deeper_customer_bar_chart(df)
+
+violin_frequency_by_age(df)
