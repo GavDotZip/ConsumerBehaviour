@@ -21,3 +21,6 @@ prop.table(table(amazon$Review_Left))
 amazon %>%
   group_by(Gender) %>%
   summarise(avg_satisfaction = mean(Shopping_Satisfaction))
+
+# Correlation between variables
+cor(amazon$age, amazon$Shopping_Satisfaction)
