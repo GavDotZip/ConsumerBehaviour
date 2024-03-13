@@ -43,3 +43,8 @@ amazon_top_5 <- amazon %>%
 ggplot(amazon_top_5, aes(x = Purchase_Categories)) +
   geom_bar() +
   labs(title = "Top 5 Purchase Categories", x = "Category", y = "Count")
+
+# Box plot of Age by Gender
+ggplot(amazon, aes(x = Gender, y = age)) +
+  geom_boxplot() +
+  labs(title = "Age Distribution by Gender", x = "Gender", y = "Age")
