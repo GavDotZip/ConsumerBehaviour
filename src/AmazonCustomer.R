@@ -48,3 +48,8 @@ ggplot(amazon_top_5, aes(x = Purchase_Categories)) +
 ggplot(amazon, aes(x = Gender, y = age)) +
   geom_boxplot() +
   labs(title = "Age Distribution by Gender", x = "Gender", y = "Age")
+
+# Scatter plot of Age vs. Shopping Satisfaction
+ggplot(amazon, aes(x = age, y = Shopping_Satisfaction)) +
+  geom_point() +
+  labs(title = "Age vs. Shopping Satisfaction", x = "Age", y = "Shopping Satisfaction")
