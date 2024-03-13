@@ -3,7 +3,7 @@
 library(dplyr)
 
 # Read the CSV file into a dataframe
-amazon <- read.csv("C:/Users/gavin/PycharmProjects/ConsumerBehaviour/src/data/Amazon_Customer_Behavior_Survey.csv")
+amazon <- read.csv("C:/Users/gavin/Downloads/Amazon_Customer_Behavior_Survey.csv")
 
 # View the structure of the dataframe
 str(amazon) 
@@ -12,7 +12,12 @@ str(amazon)
 summary(amazon$age)  # Summary statistics for age
 
 # Frequency table for categorical variables
-table(amazon$gender)  # Frequency table for gender
+table(amazon$Gender)  # Frequency table for gender
 
-# Mean purchase frequency
-mean(amazon$Purchase_Frequency)  # Assuming Purchase_Frequency is encoded as numeric
+# Proportion of customers who leave reviews
+prop.table(table(amazon$Review_Left))
+
+# Average shopping satisfaction by gender
+amazon %>%
+  group_by(Gender) %>%
+  summarise(avg_satisfaction = mean(Shopping_Satisfaction))
