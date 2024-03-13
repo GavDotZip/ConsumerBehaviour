@@ -24,3 +24,22 @@ amazon %>%
 
 # Correlation between variables
 cor(amazon$age, amazon$Shopping_Satisfaction)
+
+# Bar plot of Top 5 Purchase Categories
+library(ggplot2)
+# Calculate frequency of each purchase category
+category_counts <- amazon %>%
+  count(Purchase_Categories) %>%
+  arrange(desc(n))  # Arrange in descending order of frequency
+
+# Select top 5 categories
+top_5_categories <- head(category_counts$Purchase_Categories, 5)
+
+# Filter data for only the top 5 categories
+amazon_top_5 <- amazon %>%
+  filter(Purchase_Categories %in% top_5_categories)
+
+# Plot the bar chart for top 5 categories
+ggplot(amazon_top_5, aes(x = Purchase_Categories)) +
+  geom_bar() +
+  labs(title = "Top 5 Purchase Categories", x = "Category", y = "Count")
