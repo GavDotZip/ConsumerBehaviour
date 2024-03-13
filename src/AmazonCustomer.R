@@ -53,3 +53,19 @@ ggplot(amazon, aes(x = Gender, y = age)) +
 ggplot(amazon, aes(x = age, y = Shopping_Satisfaction)) +
   geom_point() +
   labs(title = "Age vs. Shopping Satisfaction", x = "Age", y = "Shopping Satisfaction")
+
+# Classification of Gender and Purchase Frequency
+library(caret)
+
+# Preprocess the data
+# Convert categorical variables to factors
+amazon$Gender <- as.factor(amazon$Gender)
+amazon$Purchase_Frequency <- as.factor(amazon$Purchase_Frequency)
+# Convert "Review_Left" to a factor (the target variable)
+amazon$Review_Left <- as.factor(amazon$Review_Left)
+
+# Split the data into training and testing sets
+set.seed(123)  # Set seed for reproducibility
+train_index <- createDataPartition(amazon$Review_Left, p = 0.7, list = FALSE)
+train_data <- amazon[train_index, ]
+test_data <- amazon[-train_index, ]
