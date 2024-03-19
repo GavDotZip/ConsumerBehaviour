@@ -82,3 +82,10 @@ test_data$Improvement_Areas <- factor(test_data$Improvement_Areas, levels = leve
 
 # Make predictions on the test set
 predictions <- predict(model, newdata = test_data, type = "response")
+
+# Convert both vectors to factors with the same levels
+predicted_classes <- factor(predicted_classes, levels = levels(test_data$Review_Left))
+
+# Create confusion matrix
+confusion_matrix <- confusionMatrix(predicted_classes, test_data$Review_Left)
+print(confusion_matrix)
