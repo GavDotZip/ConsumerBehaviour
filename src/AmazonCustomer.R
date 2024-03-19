@@ -72,3 +72,13 @@ test_data <- amazon[-train_index, ]
 
 # Build a logistic regression model
 model <- glm(Review_Left ~ ., data = train_data, family = "binomial", maxit = 1000)
+
+# Convert Improvement_Areas column to factors in both datasets
+train_data$Improvement_Areas <- as.factor(train_data$Improvement_Areas)
+test_data$Improvement_Areas <- as.factor(test_data$Improvement_Areas)
+
+# Ensure consistency of levels between train and test datasets
+test_data$Improvement_Areas <- factor(test_data$Improvement_Areas, levels = levels(train_data$Improvement_Areas))
+
+# Make predictions on the test set
+predictions <- predict(model, newdata = test_data, type = "response")
