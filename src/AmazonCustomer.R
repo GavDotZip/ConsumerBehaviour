@@ -69,3 +69,6 @@ set.seed(123)  # Set seed for reproducibility
 train_index <- createDataPartition(amazon$Review_Left, p = 0.7, list = FALSE)
 train_data <- amazon[train_index, ]
 test_data <- amazon[-train_index, ]
+
+# Build a logistic regression model
+model <- glm(Review_Left ~ ., data = train_data, family = "binomial", maxit = 1000)
