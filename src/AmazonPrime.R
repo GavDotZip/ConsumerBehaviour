@@ -20,3 +20,4 @@ prime %>%
 prime %>%
   group_by(Gender) %>%
   summarise(avg_cs_satisfaction = mean(Customer.Support.Interactions))
+
