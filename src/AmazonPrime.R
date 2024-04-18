@@ -7,3 +7,16 @@ prime <- read.csv("C:/Users/gavin/PycharmProjects/ConsumerBehaviour/src/data/ama
 
 # View the structure of the dataframe
 str(prime)
+
+# Frequency table for categorical variables
+table(prime$Gender)  # Frequency table for gender
+
+# Average shopping satisfaction by gender
+prime %>%
+  group_by(Gender) %>%
+  summarise(avg_satisfaction = mean(Feedback.Ratings))
+
+# Average customer service satisfaction by gender
+prime %>%
+  group_by(Gender) %>%
+  summarise(avg_cs_satisfaction = mean(Customer.Support.Interactions))
