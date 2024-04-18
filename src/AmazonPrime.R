@@ -21,3 +21,21 @@ prime %>%
   group_by(Gender) %>%
   summarise(avg_cs_satisfaction = mean(Customer.Support.Interactions))
 
+# Bar plot of Top 5 Purchase Categories
+library(ggplot2)
+# Calculate frequency of each purchase category
+category_counts <- prime %>%
+  count(Purchase.History) %>%
+  arrange(desc(n))  # Arrange in descending order of frequency
+
+# Select top 3 categories
+top_3_categories <- head(category_counts$Purchase.History, 3)
+
+# Filter data for only the top 3 categories
+prime_top_3 <- prime %>%
+  filter(Purchase.History %in% top_3_categories)
+
+# Plot the bar chart for top 5 categories
+ggplot(category_counts, aes(x = Purchase.History)) +
+  geom_bar() +
+  labs(title = "Top Purchases", x = "Category", y = "Count") 
